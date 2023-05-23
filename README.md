@@ -1,3 +1,3 @@
-# Tugas Akhir
+# Doo It Application
 
-Folder untuk tugas akhir Mata Kuliah Pengembangan Aplikasi Web Lanjut
+Aplikasi untuk pencatatan keuangan pribadi
