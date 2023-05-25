@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http.response import HttpResponse
+from dooit.models import Pengguna
 
 def index(request):
-    return HttpResponse("Hello World")
+    semua_pengguna = Pengguna.objects.all()
+    context = {'daftar_pengguna': semua_pengguna}
+    return render(request, 'index.html', context)
 
