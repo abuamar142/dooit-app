@@ -2,18 +2,15 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class Pengguna(models.Model):
-    id_pengguna = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    nama = models.CharField(max_length=255)
+class Saldo(models.Model):
+    id_pengguna = models.ForeignKey(User, on_delete=models.CASCADE)
     saldo = models.IntegerField(default=0)
 
     class Meta:
         ordering = ('id_pengguna',)
 
     def __str__(self):
-        return self.nama
+        return self.id_pengguna
 
 class Kategori(models.Model):
     id_kategori = models.AutoField(primary_key=True)
@@ -33,7 +30,7 @@ class Transaksi(models.Model):
     ]
 
     id_transaksi = models.AutoField(primary_key=True)
-    pengguna = models.ForeignKey(Pengguna, on_delete=models.CASCADE)
+    pengguna = models.ForeignKey(User, on_delete=models.CASCADE)
     tanggal_transaksi = models.DateField()
     jenis_transaksi = models.CharField(max_length=255, choices=JENIS_TRANSAKSI_CHOICES)
     kategori = models.ForeignKey(Kategori, on_delete=models.CASCADE)
