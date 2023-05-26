@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import User, Pengguna, Kategori, Transaksi
+from .models import User, Saldo, Kategori, Transaksi
 
-@admin.register(Pengguna)
+@admin.register(Saldo)
 class PenggunaDooit(admin.ModelAdmin):
-    list_display = ('username', 'nama', 'saldo')
-    search_fields = ('username', 'nama')
+    list_display = ('id_pengguna', 'saldo')
     
 @admin.register(Kategori)
 class KategoriDooit(admin.ModelAdmin):

@@ -3,7 +3,7 @@
     {% for pengguna in daftar_pengguna %}
     <li>
         {{ pengguna }}
-        {{ pengguna.username }} - {{ pengguna.name }}
+        {{ pengguna.username }} - {{ pengguna.password }}
     </li>
     {% endfor %}
 </ul>
@@ -13,3 +13,6 @@
     <br>
     Password : <input type="password" name="username">
 </p>
+
+
+  <a href="{% url 'logout' %}">Logout</a>
