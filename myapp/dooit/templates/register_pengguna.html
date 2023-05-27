@@ -6,28 +6,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doo it</title>
+    <title>Daftar Akun Doo it</title>
     <link rel="stylesheet" href="{% static 'login_pengguna.css' %}">
 </head>
 
 <body>
     <div class="container">
         <div class="login">
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'dashboard' %}">
                 {% csrf_token %}
-                <h2>Welcome Back</h2>
-                <p>Welcome back ! Please enter your details</p>
-                <label for="username">Username</label>
+                <h2>Doo it</h2>
+                <p>Selamat Datang ! Daftar Akun Doo it</p>
+                <label for="">First name</label>
+                {{ form.first_name }}
+                <label for="">Last name</label>
+                {{ form.last_name }}
+                <label for="">Username</label>
                 {{ form.username }}
-                <label for="password">Password</label>
+                <label for="">Kata Sandi</label>
                 {{ form.password }}
-                    <a href="{% url 'register' %}">Forgot Password?</a>
+                <p>
                 </p>
-                <label for="login">
-                    <button type="submit">Sign in</button>
+                <label for="register">
+                    <button type="submit">Sign up</button>
                 </label>
                 <p>
-                    Don't have an account? <a href="{% url 'register' %}">Sign up for free !</a>
+                    Already have an account? <a href="{% url 'login' %}">Sign in!</a>
                 </p>
             </form>
         </div>

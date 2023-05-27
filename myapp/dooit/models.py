@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 class Saldo(models.Model):
     id_pengguna = models.ForeignKey(User, on_delete=models.CASCADE)
-    saldo = models.IntegerField(default=0)
+    saldo = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         ordering = ('id_pengguna',)
 
     def __str__(self):
-        return self.id_pengguna
+        return self.id_pengguna.first_name
 
 class Kategori(models.Model):
     id_kategori = models.AutoField(primary_key=True)
