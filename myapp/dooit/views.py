@@ -1,5 +1,6 @@
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from dooit.models import User
 
@@ -34,6 +35,7 @@ def register_view(request):
 
     return render(request, 'register_pengguna.html', {'form': form})
 
+@login_required
 def dashboard_view(request):
     semua_pengguna = User.objects.all()
     context = {'daftar_pengguna': semua_pengguna}
