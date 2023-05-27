@@ -1,10 +1,8 @@
 <h1>Daftar Pengguna</h1>
 <ul>
     {% for pengguna in daftar_pengguna %}
-    <li>
-        {{ pengguna }}
-        {{ pengguna.username }} - {{ pengguna.password }}
-    </li>
+    <li>{{ pengguna.username }} - {{ pengguna.password }}</li>
+    <li><a href="{% url 'show_profile' %}">{{ pengguna.id }}</a></li>
     {% endfor %}
 </ul>
 
@@ -14,5 +12,6 @@
     Password : <input type="password" name="username">
 </p>
 
+<a href="{% url 'show_profiles' %}">Show all profile</a>
 
   <a href="{% url 'logout' %}">Logout</a>

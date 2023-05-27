@@ -5,7 +5,11 @@
     font-family:'Inter', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-family: normal;
 
-    color: #f0ff;
+    color: #fff;
+}
+
+.text-input {
+    color: #000;
 }
 
 body {
