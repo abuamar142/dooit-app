@@ -13,20 +13,20 @@
 <body>
     <div class="container">
         <div class="login">
-            <form action="{% url 'register' %}">
+            <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
                 <h2>Doo it</h2>
                 <p>Selamat Datang ! Daftar Akun Doo it</p>
-                <label for="">First name</label>
+                <label for="first_name">First name</label>
                 {{ form.first_name }}
-                <label for="">Last name</label>
+                <label for="last_name">Last name</label>
                 {{ form.last_name }}
-                <label for="">Username</label>
+                <label for="username">Username</label>
                 {{ form.username }}
-                <label for="">Kata Sandi</label>
-                {{ form.password }}
-                <p>
-                </p>
+                <label for="password1">Password</label>
+                {{ form.password1 }}
+                <label for="password2">Password</label>
+                {{ form.password2 }}
                 <label for="register">
                     <button type="submit">Sign up</button>
                 </label>

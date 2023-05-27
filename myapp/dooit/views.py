@@ -21,13 +21,12 @@ def login_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = RegisterForm(request, data=request.POST)
+        form = RegisterForm(request.POST)
+        print('errornya :', form.errors)
+        print(form.data)
+        print(form.is_valid())
         if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = [first_name, last_name, username, password]
+            user = form.save()
             if user is not None:
                 return redirect('dashboard')
     else:
