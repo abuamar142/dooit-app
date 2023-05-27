@@ -19,7 +19,5 @@ Password: password123
 Nama: Budi Santoso
 Saldo: 5000
 
-Username: santi123
-Password: password123
-Nama: Santi Wijaya
-Saldo: 15000
+Catatan:
+1. Nanti formnya dibedain dengan form login, form register, form pemasukan, form pengeluaran, form kategori, dll
