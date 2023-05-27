@@ -10,9 +10,10 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
+            pengguna = authenticate(request, username=username, password=password)
+            if pengguna is not None:
+                login(request, pengguna)
+                request.session['pengguna_id'] = pengguna.id
                 return redirect('dashboard')
     else:
         form = LoginForm()
@@ -22,9 +23,6 @@ def login_view(request):
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        print('errornya :', form.errors)
-        print(form.data)
-        print(form.is_valid())
         if form.is_valid():
             user = form.save()
             if user is not None:
@@ -37,9 +35,15 @@ def register_view(request):
 @login_required
 def dashboard_view(request):
     semua_pengguna = User.objects.all()
+    print(request.session.get('pengguna.id'))
     context = {'daftar_pengguna': semua_pengguna}
     return render(request, 'dashboard_pengguna.html', context)
 
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def show_profile_view(request):
+    data = request.session.get('pengguna_id')
+    pengguna = User.objects.get(id=data) if data else None
+    return render(request, 'show_profile.html', {'data_pengguna': pengguna})
