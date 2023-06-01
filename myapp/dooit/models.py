@@ -3,14 +3,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Saldo(models.Model):
-    id_pengguna = models.ForeignKey(User, on_delete=models.CASCADE)
-    saldo = models.DecimalField(max_digits=10, decimal_places=2)
+    pengguna = models.ForeignKey(User, on_delete=models.CASCADE)
+    saldo = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     class Meta:
-        ordering = ('id_pengguna',)
+        ordering = ('id',)
 
     def __str__(self):
-        return self.id_pengguna.first_name
+        return self.pengguna.first_name
 
 class Kategori(models.Model):
     id_kategori = models.AutoField(primary_key=True)

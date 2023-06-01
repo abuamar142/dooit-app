@@ -16,12 +16,13 @@ class RegisterForm(UserCreationForm):
     first_name = forms.CharField(label='first_name',widget=forms.TextInput(attrs={'placeholder':'Enter your first name', 'class': 'text-input'}))
     last_name = forms.CharField(label='last_name',widget=forms.TextInput(attrs={'placeholder':'Enter your last name', 'class': 'text-input'}))
     username = forms.CharField(label='username',widget=forms.TextInput(attrs={'placeholder':'Enter your username', 'class': 'text-input'}))
+    email = forms.EmailField(label='email',widget=forms.EmailInput(attrs={'placeholder':'Enter your email', 'class': 'text-input'}))
     password1 = forms.CharField(label='password1',widget=forms.PasswordInput(attrs={'placeholder':'Insert password', 'class': 'text-input'}))
     password2 = forms.CharField(label='password2',widget=forms.PasswordInput(attrs={'placeholder':'Insert password again', 'class': 'text-input'}))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
 
 class TransaksiForm(forms.ModelForm):
     JENIS_TRANSAKSI_CHOICES = (

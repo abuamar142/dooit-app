@@ -16,6 +16,7 @@
             <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
                 <h2>Doo it</h2>
+                {{ form.errors }}
                 <p>Selamat Datang ! Daftar Akun Doo it</p>
                 <label for="username">Username</label>
                 {{ form.username }}

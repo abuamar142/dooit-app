@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from dooit.models import User, Kategori
+from dooit.models import User, Kategori, Saldo
 
 def login_view(request):
     if request.method == 'POST':
@@ -24,10 +24,17 @@ def login_view(request):
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
             user = form.save()
+
+            username = form.cleaned_data['username']
+            pengguna = User.objects.get(username=username)
+
+            Saldo.objects.get_or_create(pengguna=pengguna)
+        
             if user is not None:
-                return redirect('dashboard')
+                return redirect('login')
     else:
         form = RegisterForm()
 
@@ -37,9 +44,14 @@ def register_view(request):
 def dashboard_view(request):
     semua_pengguna = User.objects.all()
     id = request.session.get('pengguna_id')
-    context = {'daftar_pengguna': semua_pengguna, 'profile': User.objects.get(id=id)}
+    context = {
+        'daftar_pengguna': semua_pengguna,
+        'profile': User.objects.get(id=id),
+        'saldo': Saldo.objects.get(pengguna=id)
+    }
     return render(request, 'dashboard_pengguna.html', context)
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')
@@ -55,7 +67,6 @@ def update_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
-            print(form)
             form.save()
             messages.success(request, 'Profile updated successfully.')
             return redirect('show_profile')

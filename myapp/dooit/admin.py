@@ -3,8 +3,8 @@ from .models import User, Saldo, Kategori, Transaksi
 
 @admin.register(Saldo)
 class PenggunaDooit(admin.ModelAdmin):
-    list_display = ('id_pengguna', 'saldo')
-    raw_id_fields = ('id_pengguna',)
+    list_display = ('id', 'pengguna', 'saldo')
+    raw_id_fields = ('pengguna',)
     
 @admin.register(Kategori)
 class KategoriDooit(admin.ModelAdmin):
