@@ -17,12 +17,14 @@
                 {% csrf_token %}
                 <h2>Doo it</h2>
                 <p>Selamat Datang ! Daftar Akun Doo it</p>
+                <label for="username">Username</label>
+                {{ form.username }}
                 <label for="first_name">First name</label>
                 {{ form.first_name }}
                 <label for="last_name">Last name</label>
                 {{ form.last_name }}
-                <label for="username">Username</label>
-                {{ form.username }}
+                <label for="email">Email</label>
+                {{ form.email }}
                 <label for="password1">Password</label>
                 {{ form.password1 }}
                 <label for="password2">Password</label>

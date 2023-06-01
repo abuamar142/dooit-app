@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from . models import Transaksi, Kategori, Saldo
 
@@ -46,3 +46,13 @@ class KategoriForm(forms.ModelForm):
         widgets = {
             'keterangan': forms.Textarea(attrs={'rows': 3}),
         }
+
+class EditProfileForm(UserChangeForm):
+    first_name = forms.CharField(label='first_name',widget=forms.TextInput(attrs={'placeholder':'Enter your first name', 'class': 'text-input form-control'}))
+    last_name = forms.CharField(label='last_name',widget=forms.TextInput(attrs={'placeholder':'Enter your last name', 'class': 'text-input form-control'}))
+    username = forms.CharField(label='username',widget=forms.TextInput(attrs={'placeholder':'Enter your username', 'class': 'text-input form-control'}))
+    email = forms.EmailField(label='email',widget=forms.EmailInput(attrs={'placeholder':'Insert email', 'class': 'text-input form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email')
