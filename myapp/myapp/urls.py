@@ -19,6 +19,6 @@ from django.urls import path
 from django.urls.conf import include
 
 urlpatterns = [
-    path('dooit/', include('dooit.urls')),
+    path('', include('dooit.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -1,39 +1,60 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doo it</title>
-    <link rel="stylesheet" href="{% static 'login_pengguna.css' %}">
-</head>
-
-<body>
-    <div class="container">
-        <div class="login">
-            <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <h2>Welcome Back</h2>
-                <p>Welcome back ! Please enter your details</p>
-                <label for="username">Username</label>
-                {{ form.username }}
-                <label for="password">Password</label>
-                {{ form.password }}
-                </p>
-                <label for="login">
-                    <button type="submit">Sign in</button>
-                </label>
-                <p>
-                    Don't have an account? <a href="{% url 'register' %}">Sign up for free !</a>
-                </p>
-            </form>
-        </div>
-        <div class="right">
-            <img src="{% static 'login_assets.png' %}">
-        </div>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <title>Login</title>
+  </head>
+  <body class="mx-5">
+    <div class="d-flex justify-content-between">
+      <div class="mb-3 mt-5">
+        <h1>Dooit</h1>
+        <p>Aplikasi pencatatan keuangan anda</p>
+      </div>
     </div>
-</body>
-
+    <div class="container-sm">
+      <div class="text-center mb-5">
+        <div class="mb-2">
+          <h2>Selamat Datang</h2>
+        </div>
+        <p>{{ quotes|random }}</p>
+      </div>
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div>
+          <div class="mb-3">
+            <label for="username">Nama pengguna</label>
+          </div>
+          <div class="mb-3">
+            <div>{{ form.username }}</div>
+          </div>
+        </div>
+        <div class="mb-5">
+          <div class="mb-3">
+            <label for="password">Kata sandi</label>
+          </div>
+          <div class="mb-3">{{ form.password }}</div>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary form-control">
+            Masuk
+          </button>
+        </div>
+        <div class="mb-3">
+          <a href="{% url 'register' %}">
+            <button type="submit" class="btn btn-secondary form-control">
+              Daftar
+            </button>
+          </a>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
